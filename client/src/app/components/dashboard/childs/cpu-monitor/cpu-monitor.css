@@ -1,0 +1,88 @@
+/* cpu-monitor.css */
+.panel {
+  background: #11151C;
+  border: 1px solid #1C2330;
+  border-radius: 14px;
+  padding: 1.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.panel__eyebrow { font-size: .65rem; letter-spacing: .14em; color: #5EEAD4; font-weight: 600; }
+.panel__title { font-size: 1.15rem; color: #E8ECF1; margin: .25rem 0 0; font-weight: 600; }
+.panel__sub { font-size: .8rem; color: #8B95A7; }
+
+.status-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .08em;
+  padding: .3rem .6rem;
+  border-radius: 999px;
+  background: rgba(94, 234, 212, .12);
+  color: #5EEAD4;
+  white-space: nowrap;
+}
+
+/* full selectors instead of &--suffix nesting */
+.status-pill.status-pill--warn { background: rgba(251, 191, 36, .12); color: #FBBF24; }
+.status-pill.status-pill--crit { background: rgba(251, 113, 133, .12); color: #FB7185; }
+
+.panel__body { display: flex; align-items: center; gap: 2rem; }
+.stat-grid { display: grid; gap: 1rem; flex: 1; }
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #1C2330;
+  padding-bottom: .4rem;
+}
+.stat dt { font-size: .75rem; color: #8B95A7; }
+.stat dd { font-family: 'JetBrains Mono', monospace; font-size: .95rem; color: #E8ECF1; margin: 0; }
+.stat dd small { color: #8B95A7; font-size: .7rem; }
+/* cpu-monitor.css and memory-monitor.css — same changes in both */
+.panel {
+  padding: 2rem; /* was 1.5rem */
+}
+
+.panel__eyebrow {
+  font-size: .75rem; /* was .65rem */
+}
+
+.panel__title {
+  font-size: 1.5rem; /* was 1.15rem */
+}
+
+.panel__sub {
+  font-size: .95rem; /* was .8rem */
+}
+
+.panel__body {
+  gap: 2.5rem; /* was 2rem */
+}
+
+.stat-grid {
+  gap: 1.4rem; /* was 1rem */
+}
+
+.stat dt {
+  font-size: .9rem; /* was .75rem */
+}
+
+.stat dd {
+  font-size: 1.2rem; /* was .95rem */
+}
+
+.stat dd small {
+  font-size: .85rem; /* was .7rem */
+}
+
+.status-pill {
+  font-size: .75rem; /* was .65rem */
+  padding: .4rem .8rem; /* was .3rem .6rem */
+}

@@ -1,0 +1,16 @@
+<!-- dashboard.component.html -->
+<div class="dashboard">
+  @if (cpu()) {
+    <app-cpu-monitor [data]="cpu()!" />
+  }
+  @if (memory()) {
+    <app-memory-monitor [data]="memory()!" />
+  }
+  @if (processes()) {
+    <app-process-monitor
+      [data]="processes()!"
+      (killProcess)="killProcess($event)"
+      (search)="searchProcess($event)"
+    />
+  }
+</div>

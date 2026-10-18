@@ -1,0 +1,29 @@
+<!-- memory-monitor.html -->
+<section class="panel">
+  <header class="panel__head">
+    <div>
+      <span class="panel__eyebrow">MEMORY</span>
+      <h2 class="panel__title">{{ totalRAM() }} GB Total</h2>
+    </div>
+  </header>
+
+  <div class="panel__body">
+    <app-radial-gauge [value]="usage()" label="In Use" [size]="150" />
+
+    <div class="bar-stack">
+      <div class="bar-track">
+        <div class="bar-fill" [style.width.%]="usedPct()"></div>
+      </div>
+      <dl class="stat-grid">
+        <div class="stat">
+          <dt><span class="dot dot--used"></span>Used</dt>
+          <dd>{{ usedRAM() }} <small>GB</small></dd>
+        </div>
+        <div class="stat">
+          <dt><span class="dot dot--free"></span>Free</dt>
+          <dd>{{ freeRAM() }} <small>GB</small></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

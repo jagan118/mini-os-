@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+/* styles.css (global stylesheet) */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #0A0D12; /* avoids a white flash at the edges if dashboard doesn't cover everything */
+}
+
+body {
+  overflow-x: hidden; /* safety net in case anything still overflows horizontally */
+}

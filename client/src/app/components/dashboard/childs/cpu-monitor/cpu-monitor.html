@@ -1,0 +1,32 @@
+<!-- cpu-monitor.html -->
+<section class="panel">
+  <header class="panel__head">
+    <div>
+      <span class="panel__eyebrow">PROCESSOR</span>
+      <h2 class="panel__title">{{ data().model }}</h2>
+      <span class="panel__sub">{{ data().manufacture }}</span>
+    </div>
+    <span
+      class="status-pill"
+      [class.status-pill--warn]="usage() >= 60"
+      [class.status-pill--crit]="usage() >= 85"
+    >
+      {{ statusLabel() }}
+    </span>
+  </header>
+
+  <div class="panel__body">
+    <app-radial-gauge [value]="usage()" label="Usage" [size]="150" />
+
+    <dl class="stat-grid">
+      <div class="stat">
+        <dt>Cores</dt>
+        <dd>{{ data().cores }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Clock</dt>
+        <dd>{{ data().speed }} <small>GHz</small></dd>
+      </div>
+    </dl>
+  </div>
+</section>

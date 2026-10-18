@@ -1,0 +1,79 @@
+<!-- process-monitor.html -->
+<section class="panel">
+  <header class="panel__head">
+    <div>
+      <span class="panel__eyebrow">PROCESSES</span>
+      <h2 class="panel__title">{{ data.length }} Running</h2>
+    </div>
+
+    <div class="search">
+      <svg class="search__icon" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+        placeholder="Search by name "
+      />
+    </div>
+  </header>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-pid">PID</th>
+          <th class="col-name">NAME</th>
+          <th class="col-load">CPU</th>
+          <th class="col-load">MEMORY</th>
+          <th class="col-action"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (process of data; track process.pid) {
+          <tr [class.row--crit]="severity(process.cpu) === 'crit'">
+            <td class="mono muted">{{ process.pid }}</td>
+            <td class="proc-name">{{ process.name }}</td>
+
+            <td>
+              <div class="load">
+                <span class="mono load__value" [class]="'load__value--' + severity(process.cpu)">
+                  {{ toNum(process.cpu) }}%
+                </span>
+                <div class="load__track">
+                  <div class="load__fill" [class]="'load__fill--' + severity(process.cpu)"
+                       [style.width.%]="cpuMemPct(process.cpu)"></div>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <div class="load">
+                <span class="mono load__value">{{ toNum(process.memory) }} <small>MB</small></span>
+                <div class="load__track">
+                  <div class="load__fill load__fill--mem" [style.width.%]="memPct(process.memory)"></div>
+                </div>
+              </div>
+            </td>
+
+            <td class="col-action">
+              <button
+                class="kill-btn"
+                [class.kill-btn--confirm]="pendingKillPid() === process.pid"
+                (click)="onKillClick(process.pid)"
+              >
+                {{ pendingKillPid() === process.pid ? 'CONFIRM?' : 'KILL' }}
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr class="empty-row">
+            <td colspan="5">No processes match "{{ searchQuery }}"</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
