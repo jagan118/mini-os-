@@ -36,5 +36,4 @@ coverage/
 test-results/
 
 # Optional: compiled artifacts (ignore if you don't commit them)
-*.js
 *.js.map
