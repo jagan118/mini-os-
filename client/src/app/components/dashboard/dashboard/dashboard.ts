@@ -104,10 +104,14 @@ export class Dashboard {
   }
 
   killProcess(pid: number) {
-    if(confirm("confirm to kill process")){
+    const confirmation = this.monitorService.isDemoMode
+      ? 'Remove this sample process from the demo list? No real process will be terminated.'
+      : 'Confirm to kill process?';
+
+    if(confirm(confirmation)){
       this.monitorService.killProcess(pid).subscribe({
         next:(response)=>{
-          alert("success");
+          alert(response.message || 'Process terminated successfully.');
           this.loadDashboardData();
         },
         error:(err) =>{

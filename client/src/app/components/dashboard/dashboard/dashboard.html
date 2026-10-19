@@ -3,7 +3,7 @@
   @if (monitorService.isDemoMode) {
     <aside class="demo-notice">
       <strong>DEMO MODE</strong>
-      <span>Sample data only. This app runs on Vercel and cannot access your device's CPU, memory, or processes.</span>
+      <span>Sample data only. Values change for demonstration; KILL removes a sample row, not a real process.</span>
     </aside>
   }
   @if (cpu()) {
@@ -15,7 +15,6 @@
   @if (processes()) {
     <app-process-monitor
       [data]="processes()!"
-      [demoMode]="monitorService.isDemoMode"
       (killProcess)="killProcess($event)"
       (search)="searchProcess($event)"
     />

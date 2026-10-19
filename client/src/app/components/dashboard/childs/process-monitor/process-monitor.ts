@@ -12,7 +12,6 @@ import { MonitorService } from '../../../../services/monitor';
 })
 export class ProcessMonitor {
   public monitorService = inject(MonitorService);
-  @Input() demoMode = false;
   searchQuery = '';
 
   private _data = signal<ProcessData[]>([]);
