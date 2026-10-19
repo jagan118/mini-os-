@@ -12,7 +12,11 @@ const processRoutes = require('./routes/process');
 const app = express();
 
 // Middleware sett
-app.use(cors());
+const allowedOrigins = (process.env.CLIENT_URL || 'https://mini-os-nu.vercel.app,http://localhost:4200')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+app.use(cors({ origin: allowedOrigins }));
 //tell express to read json
 app.use(express.json());
 
@@ -23,7 +27,7 @@ app.use('/processes',processRoutes);
 
 
 // Server Port
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 app.listen(PORT, () => {

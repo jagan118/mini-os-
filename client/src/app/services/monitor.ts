@@ -6,7 +6,10 @@ import { CpuData,MemoryData,ProcessData } from '../models/monitor.interface';
   providedIn: 'root',
 })
 export class MonitorService {
-  public apiUrl = "http://localhost:3000"
+  public apiUrl =
+    typeof window !== 'undefined' && window.__env?.API_URL
+      ? window.__env.API_URL
+      : 'https://mini-os-server.vercel.app';
   public http = inject(HttpClient);
   public refreshMonitor :any;
 
