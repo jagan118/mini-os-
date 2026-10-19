@@ -30,6 +30,7 @@ function readEnvFile(path) {
 
 const localEnv = readEnvFile(envFile);
 const apiUrl = process.env.API_URL || localEnv.API_URL || 'https://mini-os-server.vercel.app';
+const demoMode = (process.env.DEMO_MODE || localEnv.DEMO_MODE || 'true').toLowerCase() === 'true';
 
 let parsedApiUrl;
 try {
@@ -42,5 +43,8 @@ if (parsedApiUrl.protocol !== 'http:' && parsedApiUrl.protocol !== 'https:') {
   throw new Error('API_URL must use HTTP or HTTPS.');
 }
 
-const output = `window.__env = ${JSON.stringify({ API_URL: apiUrl.replace(/\/+$/, '') })};\n`;
+const output = `window.__env = ${JSON.stringify({
+  API_URL: apiUrl.replace(/\/+$/, ''),
+  DEMO_MODE: demoMode,
+})};\n`;
 writeFileSync(join(clientDirectory, 'public', 'env.js'), output);

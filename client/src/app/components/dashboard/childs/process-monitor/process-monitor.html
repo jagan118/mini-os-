@@ -28,7 +28,7 @@
           <th class="col-name">NAME</th>
           <th class="col-load">CPU</th>
           <th class="col-load">MEMORY</th>
-          <th class="col-action"></th>
+          <th class="col-action">{{ demoMode ? 'MODE' : '' }}</th>
         </tr>
       </thead>
       <tbody>
@@ -61,10 +61,11 @@
             <td class="col-action">
               <button
                 class="kill-btn"
+                [disabled]="demoMode"
                 [class.kill-btn--confirm]="pendingKillPid() === process.pid"
                 (click)="onKillClick(process.pid)"
               >
-                {{ pendingKillPid() === process.pid ? 'CONFIRM?' : 'KILL' }}
+                {{ demoMode ? 'DEMO' : pendingKillPid() === process.pid ? 'CONFIRM?' : 'KILL' }}
               </button>
             </td>
           </tr>

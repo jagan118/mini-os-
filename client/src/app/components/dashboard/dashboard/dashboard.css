@@ -10,3 +10,30 @@
 app-process-monitor {
   grid-column: 1 / -1;
 }
+
+.demo-notice {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #5b4823;
+  border-radius: 0.5rem;
+  background: #211b10;
+  color: #d7c49b;
+  font-size: 0.85rem;
+}
+
+.demo-notice strong {
+  flex: 0 0 auto;
+  color: #f0c674;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+  .demo-notice {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}

@@ -1,5 +1,11 @@
 <!-- dashboard.component.html -->
 <div class="dashboard">
+  @if (monitorService.isDemoMode) {
+    <aside class="demo-notice">
+      <strong>DEMO MODE</strong>
+      <span>Sample data only. This app runs on Vercel and cannot access your device's CPU, memory, or processes.</span>
+    </aside>
+  }
   @if (cpu()) {
     <app-cpu-monitor [data]="cpu()!" />
   }
@@ -9,6 +15,7 @@
   @if (processes()) {
     <app-process-monitor
       [data]="processes()!"
+      [demoMode]="monitorService.isDemoMode"
       (killProcess)="killProcess($event)"
       (search)="searchProcess($event)"
     />
