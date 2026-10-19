@@ -20,6 +20,10 @@ app.use(cors({ origin: allowedOrigins }));
 //tell express to read json
 app.use(express.json());
 
+app.get('/', (_req, res) => {
+    res.status(200).json({ status: 'ok', service: 'mini-os-monitor-api' });
+});
+
 //Routes
 app.use('/cpu',cpuRoutes);
 app.use('/memory',memoryRoutes);
